@@ -118,11 +118,14 @@ static void write_utf8(buffer_t buffer, VALUE string, char check_null) {
 /* TODO maybe we can use something more portable like vsnprintf instead
  * of this hack. And share it with the Python extension ;) */
 #ifndef HAVE_ASPRINTF
+#ifdef _MSC_VER
+#define snprintf sprintf_s
+#endif
 #define INT2STRING(buffer, i)                   \
     {                                           \
-        int vslength = _scprintf("%d", i) + 1;  \
+        int vslength = snprintf(NULL, 0, "%d", i) + 1;  \
         *buffer = malloc(vslength);             \
-        _snprintf(*buffer, vslength, "%d", i);  \
+        snprintf(*buffer, vslength, "%d", i);  \
     }
 #else
 #define INT2STRING(buffer, i) asprintf(buffer, "%d", i);
