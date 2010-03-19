@@ -2,7 +2,7 @@ require 'lib/mongo'
 VERSION_HEADER = File.open(File.join(File.dirname(__FILE__), 'ext', 'cbson', 'version.h'), "r")
 VERSION        = VERSION_HEADER.read.scan(/VERSION\s+"(\d+\.\d+(\.\d+\w*)?)\"/)[0][0]
 Gem::Specification.new do |s|
-  s.name = 'mongo_ext'
+  s.name = 'mbox-mongo_ext'
 
   s.version  = VERSION
   s.platform = Gem::Platform::RUBY

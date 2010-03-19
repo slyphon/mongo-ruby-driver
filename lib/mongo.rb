@@ -5,6 +5,8 @@ module Mongo
 end
 
 begin
+  gem 'mbox-mongo_ext', Mongo::VERSION # ensure we get our version of the ext gem
+
     # Need this for running test with and without c ext in Ruby 1.9.
     raise LoadError if ENV['TEST_MODE'] && !ENV['C_EXT']
     require 'mongo_ext/cbson'
@@ -17,7 +19,7 @@ begin
     warn "\n**Notice: C extension not loaded. This is required for optimum MongoDB Ruby driver performance."
     warn "  You can install the extension as follows:\n  gem install mongo_ext\n"
     warn "  If you continue to receive this message after installing, make sure that the"
-    warn "  mongo_ext gem is in your load path and that the mongo_ext and mongo gems are of the same version.\n"
+    warn "  mbox-mongo_ext gem is in your load path and that the mongo_ext and mongo gems are of the same version.\n"
 end
 
 module Mongo
